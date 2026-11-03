@@ -1,0 +1,33 @@
+{
+  "name": "@wenjuncai1390/arcade-core",
+  "version": "1.0.0",
+  "description": "Pure, framework-free game logic for 2048: move, spawn, hasMoves, and canMove.",
+  "type": "module",
+  "exports": "./src/index.js",
+  "files": [
+    "src",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "2048",
+    "game",
+    "puzzle",
+    "pure-functions"
+  ],
+  "author": "Wenjun Cai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DylanCai1390/arcade-core.git"
+  },
+  "homepage": "https://github.com/DylanCai1390/arcade-core#readme",
+  "bugs": {
+    "url": "https://github.com/DylanCai1390/arcade-core/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
