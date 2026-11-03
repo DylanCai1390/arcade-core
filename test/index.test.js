@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { move, spawn, hasMoves, canMove, DIRECTIONS } from '../src/index.js';
+import { move, spawn, hasMoves, canMove, describeMove, DIRECTIONS } from '../src/index.js';
 
 const empty = () => [
   [0, 0, 0, 0],
@@ -139,4 +139,34 @@ test('invalid input throws a TypeError', () => {
   assert.throws(() => move(empty(), 'sideways'), TypeError);
   assert.throws(() => move([[2, 2]], 'left'), TypeError);
   assert.throws(() => spawn('not a board'), TypeError);
+});
+
+test('describeMove reports points, tile paths, and whether anything changed', () => {
+  const board = [
+    [2, 2, 4, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 8],
+  ];
+  const result = describeMove(board, 'left');
+  assert.deepEqual(result.board, move(board, 'left'));
+  assert.equal(result.points, 4);
+  assert.equal(result.changed, true);
+  assert.deepEqual(result.moves, [
+    { from: { row: 0, col: 0 }, to: { row: 0, col: 0 }, merged: false },
+    { from: { row: 0, col: 1 }, to: { row: 0, col: 0 }, merged: true },
+    { from: { row: 0, col: 2 }, to: { row: 0, col: 1 }, merged: false },
+    { from: { row: 3, col: 3 }, to: { row: 3, col: 0 }, merged: false },
+  ]);
+});
+
+test('describeMove scores every merge in a single move', () => {
+  const board = [
+    [2, 2, 4, 4],
+    [8, 8, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+  ];
+  assert.equal(describeMove(board, 'left').points, 4 + 8 + 16);
+  assert.equal(describeMove(board, 'up').points, 0);
 });

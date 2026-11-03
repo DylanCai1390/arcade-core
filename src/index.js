@@ -47,7 +47,7 @@ function farthestPosition(grid, start, vector) {
   return { farthest, next };
 }
 
-function describeMove(board, direction) {
+export function describeMove(board, direction) {
   assertBoard(board);
   assertDirection(direction);
 

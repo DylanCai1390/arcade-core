@@ -1,7 +1,7 @@
 {
   "name": "@wenjuncai1390/arcade-core",
-  "version": "1.0.0",
-  "description": "Pure, framework-free game logic for 2048: move, spawn, hasMoves, and canMove.",
+  "version": "1.1.0",
+  "description": "Pure, framework-free game logic for 2048: move, spawn, hasMoves, canMove, and describeMove.",
   "type": "module",
   "exports": "./src/index.js",
   "files": [

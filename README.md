@@ -33,6 +33,14 @@ if (!hasMoves(board)) {
 }
 ```
 
+To keep score or animate tiles, use `describeMove`:
+
+```js
+import { describeMove } from '@wenjuncai1390/arcade-core';
+
+const { board: next, points, moves, changed } = describeMove(board, 'up');
+```
+
 ## The board
 
 A board is a 4×4 array of rows. Each cell holds a tile value (`2`, `4`, `8`, …) or `0` for an empty cell.
@@ -47,6 +55,7 @@ A direction is one of `'up'`, `'down'`, `'left'`, or `'right'`. The list is also
 | `spawn(board, rng?)` | A new board with a `2` (90% of the time) or a `4` in a random empty cell. `rng` defaults to `Math.random`; pass your own function returning a number in `[0, 1)` for repeatable results. A full board is returned unchanged. |
 | `hasMoves(board)` | `true` if any direction would change the board, `false` when the game is over. |
 | `canMove(board, direction)` | `true` if moving in that direction would change the board, `false` if nothing would happen. |
+| `describeMove(board, direction)` | The details of one move: `{ board, points, moves, changed }`. `points` is the total of every tile created by a merge. `moves` lists where each tile went as `{ from, to, merged }`, with positions given as `{ row, col }`. Useful for keeping score and animating tiles. Added in 1.1.0. |
 
 None of the functions change the board you pass in. Invalid boards or directions throw a `TypeError`.
 
